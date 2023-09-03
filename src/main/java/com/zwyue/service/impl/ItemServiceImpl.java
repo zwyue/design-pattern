@@ -17,7 +17,7 @@ public class ItemServiceImpl{
 	private Destination topicDestination;
 
 
-	@Autowired
+	@Resource
 	private JedisClient jedisClient;
 
 

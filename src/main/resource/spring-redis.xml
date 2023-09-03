@@ -10,7 +10,7 @@
 
 	
 	 	<!-- 配置单机版的连接 -->
-	 	<bean id="jedisClientPool" class="com.zwyue.util.jedis.JedisClientPool">
+	 	<bean id="jedisClient" class="com.zwyue.util.jedis.JedisClientPool">
 	 		<property name="jedisPool" ref="jedisPool"></property>
 	 	</bean> 
 	 	

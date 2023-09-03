@@ -52,7 +52,7 @@ public class SimpleCORSFilter implements Filter {
 ////            response.setHeader("Access-Control-Allow-Headers", "content-type, x-requested-with");
 //            response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Connection, User-Agent, Cookie");
 //            response.setHeader("Access-Control-Allow-Credentials", "true");
-            response.setContentType("textml;charset=UTF-8");
+            response.setContentType("text/ml;charset=UTF-8");
             response.setHeader("Access-Control-Allow-Origin", originHeader);
             response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
             response.setHeader("Access-Control-Max-Age", "0");
