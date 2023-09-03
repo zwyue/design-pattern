@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.ClassroomDao">
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.Classroom">
+<mapper namespace="com.zwyue.dao.ClassroomDao">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.Classroom">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="classroom" jdbcType="VARCHAR" property="classroom" />
     <result column="cateid" jdbcType="VARCHAR" property="cateid" />
@@ -26,12 +26,12 @@
   </delete>
 
   <!--新增教室-->
-  <insert id="insert" parameterType="com.zrtjoa.entity.Classroom">
+  <insert id="insert" parameterType="com.zwyue.entity.Classroom">
     insert into classroom ( classroom, cateid, catename, purpose, address,isuser, crttime)
     values ( #{classroom}, #{cateid},#{catename}, #{purpose}, #{address},#{isuser}, now())
   </insert>
 
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.Classroom">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.Classroom">
     insert into classroom
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -86,7 +86,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.Classroom">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.Classroom">
     update classroom
     <set>
       <if test="classroom != null">
@@ -113,7 +113,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.Classroom">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.Classroom">
     update classroom
     set classroom = #{classroom},
       cateid = #{cateid},
@@ -125,7 +125,7 @@
     where id = #{id}
   </update>
 
-  <select id="queryClassroomList" resultType="com.zrtjoa.entity.Classroom">
+  <select id="queryClassroomList" resultType="com.zwyue.entity.Classroom">
     select <include refid="Base_Column_List"/> from classroom
   </select>
 </mapper>

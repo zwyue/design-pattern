@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.MeetRecordDao">
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.MeetRecord">
+<mapper namespace="com.zwyue.dao.MeetRecordDao">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.MeetRecord">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="weeksort" jdbcType="VARCHAR" property="weeksort" />
     <result column="tid" jdbcType="INTEGER" property="tid" />
@@ -26,7 +26,7 @@
     delete from meetrecord
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zrtjoa.entity.MeetRecord">
+  <insert id="insert" parameterType="com.zwyue.entity.MeetRecord">
     insert into meetrecord (id, weeksort, tid, 
       tname, content, crttime, 
       classid, classname, remark, meettime
@@ -37,7 +37,7 @@
       #{meettime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.MeetRecord">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.MeetRecord">
     insert into meetrecord
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -104,7 +104,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.MeetRecord">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.MeetRecord">
     update meetrecord
     <set>
       <if test="weeksort != null">
@@ -137,7 +137,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.MeetRecord">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.MeetRecord">
     update meetrecord
     set weeksort = #{weeksort,jdbcType=VARCHAR},
       tid = #{tid,jdbcType=INTEGER},
@@ -150,7 +150,7 @@
       meettime = #{meettime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="getTitleList" resultType="java.util.Map" parameterType="com.zrtjoa.entity.Teacher">
+  <select id="getTitleList" resultType="java.util.Map" parameterType="com.zwyue.entity.Teacher">
     select
     <include refid="Base_Column_List"/>
     from workplan where classid in (""

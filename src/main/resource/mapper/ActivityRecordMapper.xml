@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.ActivityRecordDao">
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.ActivityRecord">
+<mapper namespace="com.zwyue.dao.ActivityRecordDao">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.ActivityRecord">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="tid" jdbcType="INTEGER" property="tid" />
     <result column="tname" jdbcType="VARCHAR" property="tname" />
@@ -23,7 +23,7 @@
     delete from activityrecord
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zrtjoa.entity.ActivityRecord">
+  <insert id="insert" parameterType="com.zwyue.entity.ActivityRecord">
     insert into activityrecord (id, tid, tname, 
       title, content, recordtime, activitytime
       )
@@ -31,7 +31,7 @@
       #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, now(), #{activitytime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.ActivityRecord">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.ActivityRecord">
     insert into activityrecord
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.ActivityRecord">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.ActivityRecord">
     update activityrecord
     <set>
       <if test="tid != null">
@@ -101,7 +101,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.ActivityRecord">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.ActivityRecord">
     update activityrecord
     set tid = #{tid,jdbcType=INTEGER},
       tname = #{tname,jdbcType=VARCHAR},

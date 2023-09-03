@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.CategoryDao">
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.Category">
+<mapper namespace="com.zwyue.dao.CategoryDao">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.Category">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="number" jdbcType="VARCHAR" property="number" />
     <result column="category" jdbcType="VARCHAR" property="category" />
@@ -23,7 +23,7 @@
     delete from category
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zrtjoa.entity.Category">
+  <insert id="insert" parameterType="com.zwyue.entity.Category">
     insert into category (id, number, category, 
       remarks, createid, createname, 
       crttime)
@@ -31,7 +31,7 @@
       #{remarks,jdbcType=VARCHAR}, #{createid,jdbcType=INTEGER}, #{createname,jdbcType=VARCHAR}, 
       #{crttime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.Category">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.Category">
     insert into category
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.Category">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.Category">
     update category
     <set>
       <if test="number != null">
@@ -104,7 +104,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.Category">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.Category">
     update category
     set number = #{number,jdbcType=VARCHAR},
       category = #{category,jdbcType=VARCHAR},

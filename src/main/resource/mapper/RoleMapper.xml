@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.RoleDao">
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.Role">
+<mapper namespace="com.zwyue.dao.RoleDao">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.Role">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="rolename" jdbcType="VARCHAR" property="rolename" />
     <result column="powerid" jdbcType="INTEGER" property="powerid" />
@@ -24,13 +24,13 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insert" parameterType="com.zrtjoa.entity.Role">
+  <insert id="insert" parameterType="com.zwyue.entity.Role">
     insert into role ( rolename, powerid,powername, description, status,crttime)
     values ( #{rolename,jdbcType=VARCHAR}, #{powerid,jdbcType=INTEGER},
       #{powername,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},0, now())
   </insert>
   <!--批量插入-->
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.Role">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.Role">
     insert into role
     <trim prefix="(" suffix=")" suffixOverrides=",">
 
@@ -67,7 +67,7 @@
     </trim>
   </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.Role">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.Role">
     update role
     <set>
       <if test="rolename != null and rolename != ''">
@@ -88,7 +88,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.Role">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.Role">
     update role
     set rolename = #{rolename,jdbcType=VARCHAR},
       powerid = #{powerid,jdbcType=INTEGER},
@@ -100,7 +100,7 @@
   </update>
 
   <!--根据角色id list查询角色（包含权限id）-->
-  <select id="queryRoleByRoleIds" parameterType="string" resultType="com.zrtjoa.entity.Role">
+  <select id="queryRoleByRoleIds" parameterType="string" resultType="com.zwyue.entity.Role">
     select
       <include refid="Base_Column_List"/>
     from role where id in (
@@ -110,7 +110,7 @@
     )
   </select>
 
-  <select id="roleList" resultType="com.zrtjoa.entity.Role">
+  <select id="roleList" resultType="com.zwyue.entity.Role">
     select
     <include refid="Base_Column_List"/>
     from role

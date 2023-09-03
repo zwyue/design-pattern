@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.IdentitysDao">
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.Identitys">
+<mapper namespace="com.zwyue.dao.IdentitysDao">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.Identitys">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="duties" jdbcType="VARCHAR" property="duties" />
     <result column="crttime" jdbcType="TIMESTAMP" property="crttime" />
@@ -19,11 +19,11 @@
     delete from identitys
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zrtjoa.entity.Identitys">
+  <insert id="insert" parameterType="com.zwyue.entity.Identitys">
     insert into identitys (id, duties, crttime)
     values (#{id,jdbcType=INTEGER}, #{duties,jdbcType=VARCHAR}, now())
   </insert>
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.Identitys">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.Identitys">
     insert into identitys
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -48,7 +48,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.Identitys">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.Identitys">
     update identitys
     <set>
       <if test="duties != null">
@@ -60,7 +60,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.Identitys">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.Identitys">
     update identitys
     set duties = #{duties,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

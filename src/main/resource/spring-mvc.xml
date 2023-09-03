@@ -11,8 +11,8 @@
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!-- 自动扫描  @Controller-->
-    <context:component-scan base-package="com.zrtjoa.controller"/>
-    <context:component-scan base-package="com.zrtjoa.service.impl"/>
+    <context:component-scan base-package="com.zwyue.controller"/>
+    <context:component-scan base-package="com.zwyue.service.impl"/>
 
     <!--使用@value注解需要在spring中加载properties配置文件-->
     <context:property-placeholder location="classpath:jdbc.properties"/>
@@ -53,7 +53,7 @@
     </bean>
 
     <!--全局异常处理器,只要类实现了HandlerExceptionResolver接口，就是一个全局异常处理器-->
-    <bean class="com.zrtjoa.exception.TjoaExceptionResolver"/>
+    <bean class="com.zwyue.exception.TjoaExceptionResolver"/>
 
     <!-- redis配置 -->
     <!--<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">-->
@@ -105,7 +105,7 @@
             <mvc:exclude-mapping path="/student/list"/>
             <mvc:exclude-mapping path="/power/query-menu"/>
             <mvc:exclude-mapping path="/classroom/toClassroomManage"/>
-            <bean class="com.zrtjoa.interceptor.AuthInterceptor"/>
+            <bean class="com.zwyue.interceptor.AuthInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

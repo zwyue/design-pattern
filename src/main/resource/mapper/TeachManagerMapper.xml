@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.TeachManagerDao">
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.TeachManager">
+<mapper namespace="com.zwyue.dao.TeachManagerDao">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.TeachManager">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="tid" jdbcType="INTEGER" property="tid" />
     <result column="tname" jdbcType="VARCHAR" property="tname" />
@@ -35,7 +35,7 @@
     delete from teachmanager
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zrtjoa.entity.TeachManager">
+  <insert id="insert" parameterType="com.zwyue.entity.TeachManager">
     insert into teachmanager (id, tid, tname, 
       classid, classname, type, 
       starttime, endtime, leavedate, 
@@ -49,7 +49,7 @@
       #{roomname,jdbcType=VARCHAR}, #{auditorid,jdbcType=INTEGER}, #{auditorname,jdbcType=VARCHAR}, 
       #{issure,jdbcType=VARCHAR}, #{crttime,jdbcType=TIMESTAMP},#{weeks,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.TeachManager">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.TeachManager">
     insert into teachmanager
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -164,7 +164,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.TeachManager">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.TeachManager">
     update teachmanager
     <set>
       <if test="tid != null">
@@ -221,7 +221,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.TeachManager">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.TeachManager">
     update teachmanager
     set tid = #{tid,jdbcType=INTEGER},
       tname = #{tname,jdbcType=VARCHAR},

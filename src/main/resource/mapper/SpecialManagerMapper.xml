@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.SpecialManagerDao">
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.SpecialManager">
+<mapper namespace="com.zwyue.dao.SpecialManagerDao">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.SpecialManager">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="sid" jdbcType="INTEGER" property="sid" />
     <result column="sname" jdbcType="VARCHAR" property="sname" />
@@ -34,7 +34,7 @@
     delete from specialmanager
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zrtjoa.entity.SpecialManager">
+  <insert id="insert" parameterType="com.zwyue.entity.SpecialManager">
     insert into specialmanager (id, sid, sname, 
       sex, filtime, types, 
       content, times, address,
@@ -48,7 +48,7 @@
       #{options,jdbcType=VARCHAR}, #{classid,jdbcType=INTEGER}, #{classname,jdbcType=VARCHAR},
       #{phone,jdbcType=VARCHAR}, #{stunumber,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.SpecialManager">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.SpecialManager">
     insert into specialmanager
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -157,7 +157,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.SpecialManager">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.SpecialManager">
     update specialmanager
     <set>
       <if test="sid != null">
@@ -211,7 +211,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.SpecialManager">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.SpecialManager">
     update specialmanager
     set sid = #{sid,jdbcType=INTEGER},
       sname = #{sname,jdbcType=VARCHAR},
@@ -231,7 +231,7 @@
       stunumber = #{stunumber,jdbcType=VARCHAR},
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="getList" resultType="java.util.Map" parameterType="com.zrtjoa.entity.Teacher">
+  <select id="getList" resultType="java.util.Map" parameterType="com.zwyue.entity.Teacher">
     select
     <include refid="Base_Column_List"/>
     from specialmanager where classid in (""

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.TeacherDao">
+<mapper namespace="com.zwyue.dao.TeacherDao">
   <sql id="Base_Column_List">
     id, tnumber, tname, password, sex, age, phone, sfzh, birthdate, nation, sfzaddress, address,
     workunit, classid, classname, status, crttime, roleid, leavedate, majorid, majorname
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.zrtjoa.entity.Teacher">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.zwyue.entity.Teacher">
     select 
     <include refid="Base_Column_List" />
     from teacher
@@ -17,7 +17,7 @@
   </delete>
 
   <!--教师录入-->
-  <insert id="insert" parameterType="com.zrtjoa.entity.Teacher">
+  <insert id="insert" parameterType="com.zwyue.entity.Teacher">
     insert into teacher (tnumber, tname,sex, age, phone, sfzh,birthdate,
     nation, sfzaddress,address,workunit, status, crttime
     <if test="password != null and password != '' ">
@@ -61,7 +61,7 @@
     )
   </insert>
 
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.Teacher">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.Teacher">
     insert into teacher
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -195,7 +195,7 @@
     </trim>
   </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.Teacher">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.Teacher">
     update teacher
     <set>
       <if test="tnumber != null and tnumber != ''">
@@ -259,7 +259,7 @@
     where id = #{id}
   </update>
 
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.Teacher">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.Teacher">
     update teacher
     set tnumber = #{tnumber,jdbcType=VARCHAR},
       tname = #{tname,jdbcType=VARCHAR},
@@ -284,15 +284,15 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="queryTeacherByNumber" parameterType="java.lang.String" resultType="com.zrtjoa.entity.Teacher">
+  <select id="queryTeacherByNumber" parameterType="java.lang.String" resultType="com.zwyue.entity.Teacher">
      select * from teacher where tnumber = #{value }
   </select>
 
-  <select id="queryAllTeacher" resultType="com.zrtjoa.entity.Teacher">
+  <select id="queryAllTeacher" resultType="com.zwyue.entity.Teacher">
      select * from teacher
   </select>
 
-  <select id="queryTeacherByRoleId" parameterType="string" resultType="com.zrtjoa.entity.Teacher">
+  <select id="queryTeacherByRoleId" parameterType="string" resultType="com.zwyue.entity.Teacher">
      select * from teacher where roleid like concat("%","${value}","%")
   </select>
 
@@ -304,7 +304,7 @@
      select tnumber from teacher order by id desc limit 1;
   </select>
 
-  <select id="getteaList" parameterType="java.lang.Integer" resultType="com.zrtjoa.entity.Teacher">
+  <select id="getteaList" parameterType="java.lang.Integer" resultType="com.zwyue.entity.Teacher">
     select
     <include refid="Base_Column_List" />
     from teacher where majorid=#{majorid,jdbcType=INTEGER}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.WorkPlanDao">
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.WorkPlan">
+<mapper namespace="com.zwyue.dao.WorkPlanDao">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.WorkPlan">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="tid" jdbcType="INTEGER" property="tid" />
     <result column="tname" jdbcType="VARCHAR" property="tname" />
@@ -24,7 +24,7 @@
     delete from workplan
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zrtjoa.entity.WorkPlan">
+  <insert id="insert" parameterType="com.zwyue.entity.WorkPlan">
     insert into workplan (id, tid, tname, 
       title, content, recordtime, 
       classid, classname)
@@ -32,7 +32,7 @@
       #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, now(),
       #{classid,jdbcType=INTEGER}, #{classname,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.WorkPlan">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.WorkPlan">
     insert into workplan
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -87,7 +87,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.WorkPlan">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.WorkPlan">
     update workplan
     <set>
       <if test="tid != null">
@@ -111,7 +111,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.WorkPlan">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.WorkPlan">
     update workplan
     set tid = #{tid,jdbcType=INTEGER},
       tname = #{tname,jdbcType=VARCHAR},
@@ -121,7 +121,7 @@
       classname = #{classname,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="getList" resultType="java.util.Map" parameterType="com.zrtjoa.entity.Teacher">
+  <select id="getList" resultType="java.util.Map" parameterType="com.zwyue.entity.Teacher">
     select
     <include refid="Base_Column_List"/>
     from workplan where classid in (""
@@ -130,7 +130,7 @@
     </foreach>
     )  ;
   </select>
-  <select id="getclassList" resultType="java.util.Map" parameterType="com.zrtjoa.entity.Teacher">
+  <select id="getclassList" resultType="java.util.Map" parameterType="com.zwyue.entity.Teacher">
     select
     <include refid="Base_Column_List"/>
     from workplan where classid in (""

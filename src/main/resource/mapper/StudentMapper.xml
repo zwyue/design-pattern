@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.StudentDao">
+<mapper namespace="com.zwyue.dao.StudentDao">
   <!--<cache type="com.zrtjoa.util.RedisCache"/>-->
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.Student">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.Student">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="stunumber" jdbcType="VARCHAR" property="stunumber" />
     <result column="sfzh" jdbcType="VARCHAR" property="sfzh" />
@@ -40,7 +40,7 @@
   </delete>
 
   <!-- 学生录入 返回主键-->
-  <insert id="insert" parameterType="com.zrtjoa.entity.Student"
+  <insert id="insert" parameterType="com.zwyue.entity.Student"
           useGeneratedKeys="true"
           keyColumn="id"
           keyProperty="id">
@@ -58,7 +58,7 @@
     </selectKey>
   </insert>
 
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.Student">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.Student">
     insert into student
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="stunumber != null">
@@ -179,7 +179,7 @@
   </insert>
 
   <!--根据条件更新学生基本信息-->
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.Student">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.Student">
     update student
     <set>
       <if test="stunumber != null">
@@ -234,7 +234,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.Student">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.Student">
     update student
     set stunumber = #{stunumber,jdbcType=VARCHAR},
       sfzh = #{sfzh,jdbcType=VARCHAR},
@@ -262,13 +262,13 @@
     where  id  not in ( select sid from studymeet);
   </select>
 
-  <select id="queryStudentByIdCard" parameterType="string" resultType="com.zrtjoa.entity.Student">
+  <select id="queryStudentByIdCard" parameterType="string" resultType="com.zwyue.entity.Student">
     select
     <include refid="Base_Column_List"/>
     from student where sfzh = #{sfzh}
   </select>
 
-  <select id="queryAllStudents" resultType="com.zrtjoa.entity.Student">
+  <select id="queryAllStudents" resultType="com.zwyue.entity.Student">
     select * from student
   </select>
 

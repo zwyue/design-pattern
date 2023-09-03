@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.TermDao">
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.Term">
+<mapper namespace="com.zwyue.dao.TermDao">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.Term">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="term" jdbcType="VARCHAR" property="term" />
     <result column="starttime" jdbcType="TIMESTAMP" property="starttime" />
@@ -31,7 +31,7 @@
     delete from term where id = #{id}
   </delete>
 
-  <insert id="insert" parameterType="com.zrtjoa.entity.Term">
+  <insert id="insert" parameterType="com.zwyue.entity.Term">
     insert into term ( term, starttime,
       endtime, isenable, crttime, 
       userid, username)
@@ -39,7 +39,7 @@
       #{endtime,jdbcType=TIMESTAMP}, #{isenable,jdbcType=VARCHAR}, now(),
       #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.Term">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.Term">
     insert into term
     <trim prefix="(" suffix=")" suffixOverrides=",">
 
@@ -89,7 +89,7 @@
     </trim>
   </insert>
 
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.Term">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.Term">
     update term
     <set>
       <if test="term != null">
@@ -108,7 +108,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.Term">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.Term">
     update term
     set term = #{term,jdbcType=VARCHAR},
       starttime = #{starttime,jdbcType=TIMESTAMP},
@@ -116,7 +116,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectLastTerm" resultType="com.zrtjoa.entity.Term">
+  <select id="selectLastTerm" resultType="com.zwyue.entity.Term">
     select
     <include refid="Base_Column_List"/>
     from term
@@ -136,7 +136,7 @@
      update term set isenable = 0 where endtime > now() and starttime &lt; now() and isenable = 1
   </update>
 
-  <select id="queryTermList" resultType="com.zrtjoa.entity.Term">
+  <select id="queryTermList" resultType="com.zwyue.entity.Term">
     select
     <include refid="Base_Column_List"/>
     from term
@@ -150,13 +150,13 @@
     </foreach>
   </delete>
 
-  <select id="queryThisTerm" resultType="com.zrtjoa.entity.Term">
+  <select id="queryThisTerm" resultType="com.zwyue.entity.Term">
     select
     <include refid="Base_Column_List"/>
     from term where starttime &lt;= now() and  endtime >= now();
   </select>
 
-  <select id="queryThisTermByOrder" resultType="com.zrtjoa.entity.Term">
+  <select id="queryThisTermByOrder" resultType="com.zwyue.entity.Term">
     select
     <include refid="Base_Column_List"/>
     from term where starttime > now() order by id limit 1

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.PowerDao">
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.Power">
+<mapper namespace="com.zwyue.dao.PowerDao">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.Power">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="rules" jdbcType="VARCHAR" property="rules" />
     <result column="powername" jdbcType="VARCHAR" property="powername"/>
@@ -21,11 +21,11 @@
     delete from power
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zrtjoa.entity.Power">
+  <insert id="insert" parameterType="com.zwyue.entity.Power">
     insert into power (rules, powername,types,category,crttime)
     values ( #{rules}, #{powername},#{types},#{category},now())
   </insert>
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.Power">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.Power">
     insert into power
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -62,7 +62,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.Power">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.Power">
     update power
     <set>
       <if test="rules != null and rules != ''">
@@ -80,14 +80,14 @@
     </set>
     where id = #{id}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.Power">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.Power">
     update power
     set rules = #{rules},
       powername = #{powername},
       category = #{category}
     where id = #{id}
   </update>
-  <select id="queryPowerByPowerIds" parameterType="string" resultType="com.zrtjoa.entity.Power">
+  <select id="queryPowerByPowerIds" parameterType="string" resultType="com.zwyue.entity.Power">
     select
     <include refid="Base_Column_List"/>
     from power
@@ -101,13 +101,13 @@
 
   </select>
 
-  <select id="queryPowerList" resultType="com.zrtjoa.entity.Power">
+  <select id="queryPowerList" resultType="com.zwyue.entity.Power">
       select
           <include refid="Base_Column_List"/>
       from power
   </select>
 
-  <select id="queryPowerByPowerName" parameterType="java.lang.String" resultType="com.zrtjoa.entity.Power">
+  <select id="queryPowerByPowerName" parameterType="java.lang.String" resultType="com.zwyue.entity.Power">
     select * from power where powername = #{value }
   </select>
 

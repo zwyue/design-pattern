@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.ClasstypeDao">
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.Classtype">
+<mapper namespace="com.zwyue.dao.ClasstypeDao">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.Classtype">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="catename" jdbcType="VARCHAR" property="catename" />
     <result column="crttime" jdbcType="TIMESTAMP" property="crttime" />
@@ -20,11 +20,11 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insert" parameterType="com.zrtjoa.entity.Classtype">
+  <insert id="insert" parameterType="com.zwyue.entity.Classtype">
     insert into classtype (catename, crttime ) values ( #{catename,jdbcType=VARCHAR}, now())
   </insert>
 
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.Classtype">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.Classtype">
     insert into classtype
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -49,7 +49,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.Classtype">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.Classtype">
     update classtype
     <set>
       <if test="catename != null">
@@ -61,14 +61,14 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.Classtype">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.Classtype">
     update classtype
     set catename = #{catename,jdbcType=VARCHAR},
       crttime = #{crttime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="queryClassTypeList" resultType="com.zrtjoa.entity.Classtype">
+  <select id="queryClassTypeList" resultType="com.zwyue.entity.Classtype">
     select <include refid="Base_Column_List"/> from classtype
   </select>
 </mapper>

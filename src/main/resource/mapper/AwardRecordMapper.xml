@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.AwardRecordDao">
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.AwardRecord">
+<mapper namespace="com.zwyue.dao.AwardRecordDao">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.AwardRecord">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="tid" jdbcType="INTEGER" property="tid" />
     <result column="tname" jdbcType="VARCHAR" property="tname" />
@@ -22,7 +22,7 @@
     delete from awardrecord
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zrtjoa.entity.AwardRecord">
+  <insert id="insert" parameterType="com.zwyue.entity.AwardRecord">
     insert into awardrecord (id, tid, tname, 
       title, content, recordtime
       )
@@ -30,7 +30,7 @@
       #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, now()
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.AwardRecord">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.AwardRecord">
     insert into awardrecord
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -73,7 +73,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.AwardRecord">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.AwardRecord">
     update awardrecord
     <set>
       <if test="tid != null">
@@ -94,7 +94,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.AwardRecord">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.AwardRecord">
     update awardrecord
     set tid = #{tid,jdbcType=INTEGER},
       tname = #{tname,jdbcType=VARCHAR},

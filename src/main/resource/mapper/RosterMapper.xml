@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.RosterDao">
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.Roster">
+<mapper namespace="com.zwyue.dao.RosterDao">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.Roster">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="birthdate" jdbcType="TIMESTAMP" property="birthdate" />
     <result column="stunumber" jdbcType="VARCHAR" property="stunumber" />
@@ -31,14 +31,14 @@
   </delete>
 
   <!-- 插入花名册信息 -->
-  <insert id="insert" parameterType="com.zrtjoa.entity.Roster">
+  <insert id="insert" parameterType="com.zwyue.entity.Roster">
     insert into roster (birthdate, stunumber, classid,classname,
                         stuid, stuname, age, crttime, termid, termname )
     values (#{birthdate}, #{stunumber},#{classid},#{classname}, #{stuid},
             #{stuname}, #{age}, now(),#{termid},#{termname})
   </insert>
 
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.Roster">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.Roster">
     insert into roster
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -123,7 +123,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.Roster">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.Roster">
     update roster
     <set>
       <if test="birthdate != null">
@@ -165,13 +165,13 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.Roster">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.Roster">
     update roster
     set isleader = #{isleader,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="queryRosterInfoByClsIdAndStuId" resultType="java.util.Map" parameterType="com.zrtjoa.entity.StudentEnter">
+  <select id="queryRosterInfoByClsIdAndStuId" resultType="java.util.Map" parameterType="com.zwyue.entity.StudentEnter">
     select
     <include refid="Base_Column_List"/>
     from roster where stuid = #{stuid} and classid in (""
@@ -207,7 +207,7 @@
   </delete>
 
   <select id="queryRosterByClassIdAndTerm" parameterType="map"
-          resultType="com.zrtjoa.entity.Roster">
+          resultType="com.zwyue.entity.Roster">
     select r.id, r.birthdate, r.stunumber, r.classid, r.stuid,
            r.stuname, r.age, r.isleader, r.crttime, r.status,
            r.termid, r.termname ,s.sex,substring(s.sfzh,6,8),s.phone

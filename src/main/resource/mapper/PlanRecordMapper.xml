@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.PlanRecordDao">
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.PlanRecord">
+<mapper namespace="com.zwyue.dao.PlanRecordDao">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.PlanRecord">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="week" jdbcType="VARCHAR" property="week" />
     <result column="courseid" jdbcType="INTEGER" property="courseid" />
@@ -26,7 +26,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-  <insert id="insert" parameterType="com.zrtjoa.entity.PlanRecord">
+  <insert id="insert" parameterType="com.zwyue.entity.PlanRecord">
     insert into planrecord ( week, courseid, classname , classroom , teacher,
                              datetype, tid, tname, crttime
       )values ( #{week}, #{courseid},#{classname},#{classroom},
@@ -34,7 +34,7 @@
       )
   </insert>
 
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.PlanRecord">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.PlanRecord">
     insert into planrecord
     <trim prefix="(" suffix=")" suffixOverrides=",">
 
@@ -92,7 +92,7 @@
       now()
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.PlanRecord">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.PlanRecord">
     update planrecord
     <set>
       <if test="week != null">
@@ -122,7 +122,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.PlanRecord">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.PlanRecord">
     update planrecord
     set week = #{week,jdbcType=VARCHAR},
       courseid = #{courseid,jdbcType=INTEGER},
@@ -135,7 +135,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="queryIfExist" parameterType="com.zrtjoa.entity.Courses" resultType="int">
+  <select id="queryIfExist" parameterType="com.zwyue.entity.Courses" resultType="int">
     select count(id) from planrecord
     /*在选定的时间段内*/
     where week = #{week} and courseid = #{courseid} and (
@@ -147,11 +147,11 @@
        or teacher = #{teacher});
   </select>
 
-  <select id="queryAllPlanRecord" resultType="com.zrtjoa.entity.PlanRecord">
+  <select id="queryAllPlanRecord" resultType="com.zwyue.entity.PlanRecord">
     select <include refid="Base_Column_List"/> from planrecord
   </select>
 
-  <select id="queryPlanRecordByRecord" resultType="string" parameterType="com.zrtjoa.entity.PlanRecord">
+  <select id="queryPlanRecordByRecord" resultType="string" parameterType="com.zwyue.entity.PlanRecord">
     select * from planrecord where week = #{week} and classroom = #{classroom} and status = '0';
   </select>
 </mapper>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zrtjoa.dao.CoursesDao">
-  <resultMap id="BaseResultMap" type="com.zrtjoa.entity.Courses">
+<mapper namespace="com.zwyue.dao.CoursesDao">
+  <resultMap id="BaseResultMap" type="com.zwyue.entity.Courses">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="week" jdbcType="VARCHAR" property="week" />
     <result column="date" jdbcType="VARCHAR" property="date" />
@@ -25,7 +25,7 @@
     delete from courses
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zrtjoa.entity.Courses">
+  <insert id="insert" parameterType="com.zwyue.entity.Courses">
     insert into courses (week, date,
       classroom, teacher, classes,
       crttime, tid, tname
@@ -35,7 +35,7 @@
       now(), #{tid,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zrtjoa.entity.Courses">
+  <insert id="insertSelective" parameterType="com.zwyue.entity.Courses">
     insert into courses
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="week != null">
@@ -87,7 +87,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zrtjoa.entity.Courses">
+  <update id="updateByPrimaryKeySelective" parameterType="com.zwyue.entity.Courses">
     update courses
     <set>
       <if test="week != null">
@@ -117,7 +117,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zrtjoa.entity.Courses">
+  <update id="updateByPrimaryKey" parameterType="com.zwyue.entity.Courses">
     update courses
     set week = #{week,jdbcType=VARCHAR},
       date = #{date,jdbcType=VARCHAR},
@@ -130,7 +130,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="queryCourseList" parameterType="com.zrtjoa.entity.Courses" resultType="com.zrtjoa.entity.Courses">
+  <select id="queryCourseList" parameterType="com.zwyue.entity.Courses" resultType="com.zwyue.entity.Courses">
     select <include refid="Base_Column_List"/>  from courses order by date
   </select>
 </mapper>
