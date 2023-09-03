@@ -1,13 +1,27 @@
 package com.zwyue.service.impl;
 
+import static com.zwyue.common.TimeUtil.calculateAge;
+import static com.zwyue.constant.SysConstant.MAP_DEFAULT_SIZE;
+import static com.zwyue.constant.SysConstant.Punctuation.COMMA;
+import static com.zwyue.exception.ExceptionEnum.SUCCESS;
+import static com.zwyue.exception.ExceptionEnum.UPDATE_FAILED;
+
 import com.zwyue.annotation.PagingQuery;
 import com.zwyue.common.ResultUtils;
 import com.zwyue.dao.ClassesDao;
-import com.zwyue.dao.RosterDao;
 import com.zwyue.dao.StudentDao;
 import com.zwyue.dao.StudentEnterDao;
-import com.zwyue.entity.*;
+import com.zwyue.entity.Classes;
+import com.zwyue.entity.Profession;
+import com.zwyue.entity.Student;
+import com.zwyue.entity.StudentEnter;
 import com.zwyue.service.StudentService;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,15 +29,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
-
-import java.time.LocalDate;
-import java.util.*;
-import java.util.stream.Collectors;
-
-import static com.zwyue.common.TimeUtil.calculateAge;
-import static com.zwyue.constant.SysConstant.MAP_DEFAULT_SIZE;
-import static com.zwyue.constant.SysConstant.Punctuation.COMMA;
-import static com.zwyue.exception.ExceptionEnum.*;
 
 /**
  * 学生管理
@@ -91,14 +96,6 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private StudentEnterDao studentEnterDao ;
 
-    /**
-     * 学生花名册表
-     *
-     * @date 2018/12/24 17:16
-     */
-    @Autowired
-    private RosterDao rosterDao ;
-
     @Autowired
     private TransactionTemplate transactionTemplate ;
 
@@ -121,19 +118,6 @@ public class StudentServiceImpl implements StudentService {
         //查询学生是否存在
         Student existStudent = studentDao.queryStudentByIdCard(student.getSfzh());
 
-        if(existStudent!=null){
-           //查询是否重复报名，即所报班级中是否已存在该学生id
-           //可以报同一专业的不同班级
-           Map<String,Object> map = new HashMap<>(MAP_DEFAULT_SIZE);
-           map.put("classids", Arrays.asList(studentEnter.getClassid().split(COMMA)));
-           map.put("stuid",existStudent.getId());
-           List<Roster> existRoster = rosterDao.queryRosterInfoByClsIdAndStuId(map);
-           if(existRoster.size()!=0){
-               logger.error("........该生已注册过其中{}门课程........",existRoster.size());
-               return ResultUtils.error(ALREADY_SIGNED.errorCode, String.format(ALREADY_SIGNED.errorMessage,existRoster.size()));
-           }
-        }
-
         //报名几个班
         Map<String,Object> results = formatStuNum(Arrays.asList(studentEnter.getClassid().split(COMMA)));
 
@@ -145,12 +129,7 @@ public class StudentServiceImpl implements StudentService {
         student.setStunumber(studentNumbers);
         student.setAge(calculateAge(student.getSfzh().substring(6,14)));
 
-        Roster roster = new Roster();
-        roster.setStuname(student.getStuname());
-        roster.setBirthdate(student.getSfzh().substring(6,14));
-        roster.setAge(calculateAge(student.getSfzh().substring(6,14)));
-
-        return startToEnter(existStudent,student,roster,map,studentEnter);
+        return startToEnter(existStudent, student, map, studentEnter);
     }
 
     @PagingQuery
@@ -176,7 +155,6 @@ public class StudentServiceImpl implements StudentService {
             //删除学生信息
             int isDel = studentDao.deleteByPrimaryKey(stuId);
             isDel += studentEnterDao.deleteByStuId(stuId);
-            isDel += rosterDao.delByStuId(stuId);
 
             //删除redis缓存信息
             Arrays.asList(student.getStunumber().split(COMMA)).forEach(number->{
@@ -205,7 +183,6 @@ public class StudentServiceImpl implements StudentService {
                         List<String> nums = (List<String>) redisTemplate.opsForValue().get(number.substring(0,10));
                         nums.removeIf(n->n.equals(number.substring(10,12)));
                         redisTemplate.opsForValue().set(number.substring(0,10),nums);
-                        rosterDao.delByStuNo(number);
                     });
 
                     Map results = formatStuNum(Arrays.asList(studentEnter.getClassid().split(COMMA)));
@@ -219,16 +196,6 @@ public class StudentServiceImpl implements StudentService {
                     map.put("classId",studentEnter.getClassid());
                     map.put("id",studentEnter.getStuid());
                     isUpdate += studentDao.updateStudentNumbers(map);
-                    //删除原有花名册学生信息
-                    isUpdate += rosterDao.deleteByClassIdAndStuId(Arrays.asList(stringStuNos.split(COMMA)));
-
-                    //新增花名册信息
-                    Roster roster = new Roster();
-                    roster.setStuid(originEnter.getStuid());
-                    roster.setStuname(originEnter.getStuname());
-                    roster.setAge(student.getAge());
-                    roster.setBirthdate(student.getSfzh().substring(6,14));
-                    redisTemplateInsert(classInfo,roster);
                 }
             }
             isUpdate += studentEnterDao.updateByPrimaryKeySelective(studentEnter);
@@ -236,29 +203,6 @@ public class StudentServiceImpl implements StudentService {
                 return ResultUtils.success(SUCCESS) ;
             }
             return ResultUtils.error(UPDATE_FAILED.errorCode,UPDATE_FAILED.errorMessage);
-        });
-    }
-
-    /**
-     * redis存储
-     *
-     * @author zwy
-     * @date 2018/12/28 9:47
-     */
-    private void redisTemplateInsert(Map<String,String> map,Roster roster){
-        //插入花名册
-        map.keySet().forEach(key->{
-            roster.setStunumber(key);
-            roster.setClassname(map.get(key).substring(0,map.get(key).lastIndexOf(COMMA)));
-            roster.setClassid(Integer.parseInt(map.get(key).substring(map.get(key).lastIndexOf(COMMA)+1)));
-            rosterDao.insert(roster);
-            //更新缓存
-            String no = key.substring(0,10) ;
-            List classifyNos = (List) redisTemplate.opsForValue().get(no);
-            classifyNos = classifyNos==null ? new ArrayList() : classifyNos ;
-            classifyNos.add(key.substring(10,12));
-            List sortList = (List) classifyNos.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
-            redisTemplate.opsForValue().set(no,sortList);
         });
     }
 
@@ -322,7 +266,6 @@ public class StudentServiceImpl implements StudentService {
      */
     private Map startToEnter(Student existStudent
             ,Student student
-            ,Roster roster
             ,Map<String,String> map
             ,StudentEnter studentEnter){
 
@@ -331,20 +274,14 @@ public class StudentServiceImpl implements StudentService {
                 //插入学生信息
                 studentDao.insert(student);
                 studentEnter.setStuid(student.getId());
-                //设置花名册学生id
-                roster.setStuid(student.getId());
             }else {
                 student.setId(existStudent.getId());
                 //更新学生信息(学号覆盖)
                 studentDao.updateByPrimaryKeySelective(student);
                 studentEnter.setStuid(existStudent.getId());
-                //更新花名册学生id
-                roster.setStuid(existStudent.getId());
             }
             //插入学生报名信息
             studentEnterDao.insert(studentEnter);
-            //插入花名册
-            redisTemplateInsert(map,roster);
             return ResultUtils.success(SUCCESS);
         });
     }

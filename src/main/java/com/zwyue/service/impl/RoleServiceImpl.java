@@ -32,7 +32,7 @@ import static com.zwyue.constant.SysConstant.Punctuation.COMMA;
 @Service
 public class RoleServiceImpl implements RoleService {
 
-    private final static Logger logger = LoggerFactory.getLogger(ResourceServiceImpl.class);
+    private final static Logger logger = LoggerFactory.getLogger(RoleService.class);
 
     @Autowired
     private TeacherService teacherService ;
