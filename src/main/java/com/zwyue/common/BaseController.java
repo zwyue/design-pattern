@@ -18,6 +18,13 @@ import static com.zwyue.constant.SysConstant.*;
 public class BaseController {
 
     /**
+     *  缓存菜单
+     *
+     * @date 2019/1/2 13:22
+     */
+    public static final String CACHE_MENU = "menu" ;
+
+    /**
      * 获取session用户
      *
      * @author zwy
@@ -25,26 +32,6 @@ public class BaseController {
      */
     protected Teacher getLoginUser(HttpSession httpSession){
         return (Teacher) httpSession.getAttribute(CACHE_USER);
-    }
-
-    /**
-     * 获取当前登陆人角色
-     *
-     * @author zwy
-     * @date 2018/12/1 12:04
-     */
-    protected List<Role> getLoginRole(HttpSession httpSession){
-        return (List<Role>) httpSession.getAttribute(CACHE_ROLE);
-    }
-
-    /**
-     * 获取当前登陆人权限
-     *
-     * @author zwy
-     * @date 2018/12/1 12:05
-     */
-    protected List<Power> getLoginPower(HttpSession httpSession) {
-        return (List<Power>) httpSession.getAttribute(CACHE_PERMISSION);
     }
 
     protected List<Power> getMenuPower (HttpSession httpSession){

@@ -65,22 +65,4 @@ public interface TermDao {
      * @return int
      */
     Integer deleteTermByIdList(List<Integer> idList);
-
-    /**
-     * 查询本学期
-     *
-     * @author zwy
-     * @date 2019/1/5 13:00
-     * @return term
-     */
-    Term queryThisTerm();
-
-    /**
-     * 根据排序查询当前学期
-     *
-     * @author zwy
-     * @date 2019/1/5 13:48
-     * @return int
-     */
-    Term queryThisTermByOrder();
 }

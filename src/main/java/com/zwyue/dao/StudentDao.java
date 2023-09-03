@@ -51,16 +51,6 @@ public interface StudentDao {
     int updateByPrimaryKey(Student record);
 
     /**
-     * 根据身份证号查询存在的学生
-     *
-     * @author zwy
-     * @date 2018/12/21 9:47
-     * @param sfzh 身份证号
-     * @return student
-     */
-    Student queryStudentByIdCard(String sfzh);
-
-    /**
      * 查询全部学生
      *
      * @author zwy

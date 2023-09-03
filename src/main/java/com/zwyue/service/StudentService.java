@@ -25,30 +25,6 @@ public interface StudentService {
 
     int updateByPrimaryKey(Student record);
 
-    List<Student> getStudentList();
-
-
-    /*
-     * copyright    <a href="http://www.qaqavr.com/>中锐</a>
-     * <pre>
-     *     @author      zwy
-     *     @date        2018/12/21 9:25
-     *     email       1092478224@qq.com
-     *     desc
-     * </pre>
-     */
-
-    /**
-     * 录入学生信息
-     *
-     * @author zwy
-     * @date 2018/12/21 9:27
-     * @param student 学生
-     * @param studentEnter 报名表
-     * @return map
-     */
-    Map enterStudentInfo(Student student, StudentEnter studentEnter);
-
     /**
      * 查询全部学生信息
      *

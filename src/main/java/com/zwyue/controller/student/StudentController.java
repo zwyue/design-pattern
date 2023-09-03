@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.zwyue.constant.SysConstant.MAP_DEFAULT_SIZE;
+import static com.zwyue.constant.SysConstant.;
 import static com.zwyue.exception.ExceptionEnum.DELETE_FAILED;
 import static com.zwyue.exception.ExceptionEnum.SUCCESS;
 import static com.zwyue.exception.ExceptionEnum.UPDATE_FAILED;
@@ -55,28 +55,10 @@ public class StudentController extends BaseController {
         logger.info("===========获取学生信息============");
         List<Student> students = studentService.queryAllStudents();
         PageInfo<Student> pageInfo = new PageInfo<>();
-        Map<String,Object> map = new HashMap<>(MAP_DEFAULT_SIZE);
+        Map<String,Object> map = new HashMap<>();
         map.put("list",students);
         map.put("page",pageInfo);
         return ResultUtils.success(map);
-    }
-
-    /**
-     * 学生报名信息录入
-     *      包括报名信息表、学生信息表、花名册表
-     *
-     * @author zwy
-     * @date 2018/12/21 9:30
-     */
-    @RequestMapping("/enter")
-    @POST
-    public Map enterStudentInfo(Student student, StudentEnter studentEnter, HttpSession httpSession){
-        logger.info("......学生录入(单个)......");
-        studentEnter.setTid(1);
-        studentEnter.setTname("测试");
-//        studentEnter.setTid(getLoginUser(httpSession).getId());
-//        studentEnter.setTname(getLoginUser(httpSession).getTname());
-        return studentService.enterStudentInfo(student,studentEnter);
     }
 
     /**

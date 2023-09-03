@@ -21,10 +21,7 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.POST;
 import java.util.*;
 
-import static com.zwyue.constant.SysConstant.Admin.IS_ADMIN;
-import static com.zwyue.constant.SysConstant.Admin.IS_NOT_ADMIN;
 import static com.zwyue.constant.SysConstant.*;
-import static com.zwyue.constant.SysConstant.Punctuation.COMMA;
 import static com.zwyue.exception.ExceptionEnum.*;
 
 /**
@@ -37,6 +34,65 @@ import static com.zwyue.exception.ExceptionEnum.*;
 @RequestMapping("/index")
 public class IndexController {
 
+    /**
+     * 教师是否可用状态
+     *
+     * @author zwy
+     * @date 2018/11/28 13:27
+     */
+    public interface TeacherStatus{
+
+        /**
+         * 启用
+         */
+        String ACTIVE = "0" ;
+
+        /**
+         * 停用
+         */
+        String FORBIDDEN = "1" ;
+    }
+
+    /**
+     * 管理员用户名与密码
+     *
+     * @author zwy
+     * @date 2018/11/22 18:07
+     */
+    public interface Admin{
+
+        Boolean IS_ADMIN = true ;
+
+        Boolean IS_NOT_ADMIN = false ;
+
+        String NAME = "admin" ;
+
+        String PASS = "123456" ;
+
+        String SALT = "salt" ;
+    }
+
+    /**
+     *缓存角色
+     *
+     * @date 2018/11/23 13:17
+     */
+    public static final String CACHE_ROLE = "roles";
+
+    /**
+     * 缓存权限
+     *
+     * @date 2018/11/23 13:39
+     */
+    public static final String CACHE_PERMISSION = "permissions" ;
+
+    /**
+     *  缓存菜单
+     *
+     * @date 2019/1/2 13:22
+     */
+    public static final String CACHE_MENU = "menu" ;
+
     public static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
@@ -47,6 +103,13 @@ public class IndexController {
 
     @Autowired
     private TeacherService teacherService ;
+
+    /**
+     * 缓存管理员
+     *
+     * @date 2018/12/1 12:16
+     */
+    public static final String CACHE_ADMIN = "is_admin" ;
 
     /**
      * 跳转登陆页面
@@ -81,13 +144,11 @@ public class IndexController {
         }
         String tnumber =teacher.getTnumber();
 
-        if(SysConstant.Admin.NAME.equals(tnumber)
-                &&SysConstant.Admin.PASS.equals(teacher.getPassword())){
+        if(Admin.NAME.equals(tnumber)
+                &&Admin.PASS.equals(teacher.getPassword())){
 
             logger.info("======管理员穿透======",tnumber);
-            Map<String,List<Power>> powers = powerService.queryPowerByPowerIds(new ArrayList<String>());
-            httpSession.setAttribute(CACHE_MENU,powers.get("menuRights"));
-            httpSession.setAttribute(CACHE_ADMIN,IS_ADMIN);
+            httpSession.setAttribute(CACHE_ADMIN, Admin.IS_ADMIN);
             return ResultUtils.success(0);
         }
 
@@ -108,9 +169,9 @@ public class IndexController {
             if(StringUtils.isBlank(dbTeacher.getRoleid())){
                 return ResultUtils.error(NO_RIGHT.errorCode,NO_RIGHT.errorMessage);
             }
-            List<Role> roles = roleService.queryRoleByRoleIds(Arrays.asList(dbTeacher.getRoleid().split(COMMA)));
+            List<Role> roles = roleService.queryRoleByRoleIds(Arrays.asList(dbTeacher.getRoleid().split(",")));
             Set<String> powerIds = new HashSet<>();
-            roles.stream().filter(p->StringUtils.isNotBlank(p.getPowerid())).forEach(role -> powerIds.addAll(Arrays.asList(role.getPowerid().split(COMMA))));
+            roles.stream().filter(p->StringUtils.isNotBlank(p.getPowerid())).forEach(role -> powerIds.addAll(Arrays.asList(role.getPowerid().split(","))));
 
             //根据权限id获取权限信息
             if(powerIds.size()==0){
@@ -118,17 +179,7 @@ public class IndexController {
             }
             logger.info("........{}登陆成功........",dbTeacher.getTname());
 
-            //set转化为list
-            List<String> powerIdList = new ArrayList<>(powerIds);
-            Map<String,List<Power>> powers = powerService.queryPowerByPowerIds(powerIdList);
-
-            httpSession.setAttribute(CACHE_ROLE,roles);
-            httpSession.setAttribute(CACHE_PERMISSION,powers.get("allRights"));
-            httpSession.setAttribute(CACHE_MENU,powers.get("menuRights"));
-            httpSession.setAttribute(CACHE_USER,dbTeacher);
-            httpSession.setAttribute(CACHE_ADMIN,IS_NOT_ADMIN);
-
-            Map<String,Object> returnMap = new HashMap<>(MAP_DEFAULT_SIZE);
+            Map<String,Object> returnMap = new HashMap<>();
             returnMap.put("userInfo",dbTeacher);
             return ResultUtils.success(returnMap,SUCCESS.errorMessage);
         }

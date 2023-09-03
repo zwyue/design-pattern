@@ -112,7 +112,6 @@ public class TeacherServiceImpl implements TeacherService , InitializingBean {
         if(ifSuccess>0){
 
             try {
-                afterPropertiesSet();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -133,7 +132,6 @@ public class TeacherServiceImpl implements TeacherService , InitializingBean {
         if(ifDelete>0){
 
             try {
-                afterPropertiesSet();
             } catch (Exception e) {
                 e.printStackTrace();
             }

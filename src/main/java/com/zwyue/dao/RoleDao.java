@@ -20,16 +20,6 @@ public interface RoleDao {
     int updateByPrimaryKey(Role record);
 
     /**
-     * 根据角色id list查询角色（角色包含权限id）
-     *
-     * @author zwy
-     * @date 2018/12/1 10:22
-     * @param roleList 角色id list
-     * @return list
-     */
-    List<Role> queryRoleByRoleIds(List<String> roleList);
-
-    /**
      *  查询角色列表
      *
      * @author zwy

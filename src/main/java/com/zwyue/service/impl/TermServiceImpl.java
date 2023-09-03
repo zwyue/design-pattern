@@ -20,9 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.zwyue.common.TimeUtil.compareDate;
-import static com.zwyue.common.TimeUtil.plusYear;
-
 /**
  * TermServiceImpl class
  *
@@ -42,6 +39,25 @@ public class TermServiceImpl implements TermService{
     private RedisTemplate redisTemplate ;
 
     /**
+     * 学期是否可用
+     *
+     * @author zwy
+     * @date 2018/11/29 17:03
+     */
+    public interface IsEnable {
+
+        /**
+         *  可用
+         */
+        String ENABLE = "0" ;
+
+        /**
+         *  不可用
+         */
+        String DISABLED = "1";
+    }
+
+    /**
      * 新建学期，复制学期
      *
      * @author zwy
@@ -52,7 +68,7 @@ public class TermServiceImpl implements TermService{
         //校验日期
         validateDate(term);
         //初始化学期为不可用状态
-        term.setIsenable(SysConstant.IsEnable.DISABLED);
+        term.setIsenable(IsEnable.DISABLED);
 
 //        int isCreate = termDao.insert(term) ;
 //
@@ -125,7 +141,7 @@ public class TermServiceImpl implements TermService{
     public Integer copyTerm(Integer id, Teacher teacher) {
         Term oldTerm = termDao.selectByPrimaryKey(id);
         Assert.notNull(oldTerm);
-        oldTerm.setIsenable(SysConstant.IsEnable.DISABLED);
+        oldTerm.setIsenable(IsEnable.DISABLED);
         oldTerm.setUsername(teacher.getTname());
         oldTerm.setUserid(teacher.getId());
         oldTerm.setStarttime(plusYear(oldTerm.getStarttime(),1));
@@ -159,5 +175,29 @@ public class TermServiceImpl implements TermService{
         }else {
             Assert.isTrue(compareDate(startTime,lastTerm.getEndtime()),"开始日期应大于上学期结束时间");
         }
+    }
+
+    /**
+     * 在当前日期的基础上添加年份
+     *
+     * @author zwy
+     * @date 2018/11/30 18:33
+     */
+    private String plusYear(String date,int year){
+        LocalDate localDate = LocalDate.parse(date);
+        date = localDate.plusYears(year).toString();
+        return date ;
+    }
+
+    /**
+     * 日期比较（形如 2018-11-29 的日期）
+     *
+     * @author zwy
+     * @date 2018/11/29 16:23
+     */
+    private boolean compareDate(String date1,String date2) {
+        LocalDate localDate1 = LocalDate.parse(date1);
+        LocalDate localDate2 = LocalDate.parse(date2);
+        return localDate1.compareTo(localDate2) > 0  ;
     }
 }

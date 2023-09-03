@@ -3,8 +3,6 @@ package com.zwyue.common;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.zwyue.constant.SysConstant.MAP_DEFAULT_SIZE;
-
 /**
  * @author ly
  */
@@ -18,7 +16,7 @@ public class ResultUtils {
     private static String MSG = "msg";
 
     private static Map<String, Object> getMap(Object data, String msg, int success) {
-        Map<String, Object> map = new HashMap<>(MAP_DEFAULT_SIZE);
+        Map<String, Object> map = new HashMap<>();
         map.put(CODE, success);
         map.put(DATA, data);
         map.put(MSG, msg);
@@ -34,7 +32,7 @@ public class ResultUtils {
     }
 
     public static Map<String, Object> success(Object data){
-        Map<String, Object> map = new HashMap<>(MAP_DEFAULT_SIZE);
+        Map<String, Object> map = new HashMap<>();
         map.put(CODE, SUCCESS);
         map.put(DATA, data);
         return map;
@@ -49,7 +47,7 @@ public class ResultUtils {
     }
 
     public static Map<String, java.io.Serializable> error(String msg){
-        Map<String, java.io.Serializable> map = new HashMap<>(MAP_DEFAULT_SIZE);
+        Map<String, java.io.Serializable> map = new HashMap<>();
         map.put(CODE, ERROR);
         map.put(MSG, msg);
         return map;

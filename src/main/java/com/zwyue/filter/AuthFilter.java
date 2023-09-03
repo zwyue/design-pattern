@@ -23,6 +23,17 @@ import static com.zwyue.constant.SysConstant.*;
  * @date 2018/11/22 11:27
  */
 public class AuthFilter extends OncePerRequestFilter {
+    /**
+     * 缓存管理员
+     *
+     * @date 2018/12/1 12:16
+     */
+    public static final String CACHE_ADMIN = "is_admin" ;
+
+    /**
+     * 登陆地址jsp
+     */
+    public static final String LOGIN_URI = "/index/login" ;
 
     private static final Logger logger = LoggerFactory.getLogger(AuthFilter.class) ;
 

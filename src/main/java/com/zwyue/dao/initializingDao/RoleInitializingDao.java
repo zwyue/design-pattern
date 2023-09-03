@@ -77,7 +77,6 @@ public class RoleInitializingDao implements InitializingBean {
      */
     public Integer insertSelective(Role role) throws Exception {
         int returnInsert = roleDao.insertSelective(role);
-        afterPropertiesSet();
         return returnInsert ;
     }
 
@@ -103,7 +102,6 @@ public class RoleInitializingDao implements InitializingBean {
         int delete = roleDao.deleteByPrimaryKey(roleId);
         if(delete>0){
             try {
-                afterPropertiesSet();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -116,7 +114,6 @@ public class RoleInitializingDao implements InitializingBean {
         int update = roleDao.updateByPrimaryKey(role);
         if(update>0){
             try {
-                afterPropertiesSet();
             } catch (Exception e) {
                 e.printStackTrace();
             }

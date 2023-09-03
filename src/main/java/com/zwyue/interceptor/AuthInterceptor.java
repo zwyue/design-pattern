@@ -24,6 +24,19 @@ import static com.zwyue.constant.SysConstant.*;
  * </pre>
  */
 public class AuthInterceptor implements HandlerInterceptor {
+    /**
+     * 缓存管理员
+     *
+     * @date 2018/12/1 12:16
+     */
+    public static final String CACHE_ADMIN = "is_admin" ;
+
+    /**
+     * 缓存权限
+     *
+     * @date 2018/11/23 13:39
+     */
+    public static final String CACHE_PERMISSION = "permissions" ;
 
     private final static Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
 

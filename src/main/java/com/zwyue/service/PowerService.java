@@ -14,16 +14,6 @@ import java.util.Map;
 public interface PowerService {
 
     /**
-     * 根据权限id查询id
-     *
-     * @author zwy
-     * @date 2018/12/1 10:50
-     * @param powerIds 权限id集合
-     * @return list
-     */
-    Map<String,List<Power>> queryPowerByPowerIds(List<String> powerIds);
-
-    /**
      * 查询权限列表
      *
      * @author zwy
@@ -40,16 +30,6 @@ public interface PowerService {
      * @param power 权限实体
      */
     void createNewPower(Power power);
-
-    /**
-     * 根据登陆权限名称获取登陆权限信息
-     *
-     * @author zwy
-     * @date 2018/12/3 10:58
-     * @param loginPower 登陆权限名称
-     * @return power
-     */
-    Power queryPowerByPowerName(String loginPower);
 
     /**
      * 角色分配权限

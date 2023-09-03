@@ -20,20 +20,4 @@ public interface ClassesDao {
     int updateByPrimaryKey(Classes record);
 
     List<Classes> getList();
-
-    List<Classes> byNameList(String name);
-
-    List<Classes> getCList(Integer majorid);
-
-    List<Classes> getTeaClasslist(Integer headmaster);
-
-    /**
-     * 根据条件查询班级classes
-     *
-     * @author zwy
-     * @date 2019/1/10 14:45
-     * @param classes 班级查询条件
-     * @return list
-     */
-    List<Classes> queryClasses(Classes classes);
 }
