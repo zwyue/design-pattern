@@ -16,7 +16,7 @@ import java.util.Map;
 import static com.zwyue.exception.ExceptionEnum.*;
 
 /**
- * copyright    <a href="http://www.qaqavr.com/>中锐</a>
+ * 
  * <pre>
  *     @author      zwy
  *     @date        2018/12/20 13:47

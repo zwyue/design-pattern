@@ -1,6 +1,5 @@
 package com.zwyue.service.impl;
 
-import com.zwyue.constant.SysConstant;
 import com.zwyue.dao.TermDao;
 import com.zwyue.entity.Teacher;
 import com.zwyue.entity.Term;

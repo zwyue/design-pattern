@@ -1,8 +1,6 @@
 package com.zwyue.controller;
 
 import com.zwyue.common.ResultUtils;
-import com.zwyue.constant.SysConstant;
-import com.zwyue.entity.Power;
 import com.zwyue.entity.Role;
 import com.zwyue.entity.Teacher;
 import com.zwyue.service.PowerService;
@@ -21,7 +19,6 @@ import javax.servlet.http.HttpSession;
 import javax.ws.rs.POST;
 import java.util.*;
 
-import static com.zwyue.constant.SysConstant.*;
 import static com.zwyue.exception.ExceptionEnum.*;
 
 /**

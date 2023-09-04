@@ -64,7 +64,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     /**
-     * copyright    <a href="http://www.qaqavr.com/>中锐</a>
+     * 
      * <pre>
      *     author        zwy
      *     @date        2018/12/21 9:26

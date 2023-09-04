@@ -1,13 +1,9 @@
 package com.zwyue.common;
 
 import com.zwyue.entity.Power;
-import com.zwyue.entity.Role;
 import com.zwyue.entity.Teacher;
-
-import javax.servlet.http.HttpSession;
 import java.util.List;
-
-import static com.zwyue.constant.SysConstant.*;
+import javax.servlet.http.HttpSession;
 
 /**
  * BaseController class
@@ -16,6 +12,13 @@ import static com.zwyue.constant.SysConstant.*;
  * @date 2018/11/22 13:46
  */
 public class BaseController {
+
+    /**
+     * 缓存用户
+     *
+     * @date 2018/11/23 13:17
+     */
+    public static final String CACHE_USER = "teacher" ;
 
     /**
      *  缓存菜单

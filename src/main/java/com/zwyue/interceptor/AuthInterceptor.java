@@ -12,10 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-import static com.zwyue.constant.SysConstant.*;
-
 /**
- * copyright    <a href="http://www.qaqavr.com/>中锐</a>
  * <pre>
  *     @author  zwy
  *     @date    2018/12/1 14:08
@@ -24,6 +21,13 @@ import static com.zwyue.constant.SysConstant.*;
  * </pre>
  */
 public class AuthInterceptor implements HandlerInterceptor {
+    /**
+     * 缓存用户
+     *
+     * @date 2018/11/23 13:17
+     */
+    public static final String CACHE_USER = "teacher" ;
+
     /**
      * 缓存管理员
      *

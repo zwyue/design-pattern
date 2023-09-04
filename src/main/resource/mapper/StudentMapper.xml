@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zwyue.dao.StudentDao">
-  <!--<cache type="com.zrtjoa.util.RedisCache"/>-->
+
   <resultMap id="BaseResultMap" type="com.zwyue.entity.Student">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="stunumber" jdbcType="VARCHAR" property="stunumber" />

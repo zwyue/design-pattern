@@ -20,9 +20,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.zwyue.constant.SysConstant.INIT_PASSWORD;
-import static com.zwyue.constant.SysConstant.Punctuation.COMMA;
-
 /**
  * RoleServiceImpl class
  *
@@ -31,6 +28,13 @@ import static com.zwyue.constant.SysConstant.Punctuation.COMMA;
  */
 @Service
 public class RoleServiceImpl implements RoleService {
+
+    /**
+     * 初始化密码
+     *
+     * @date 2018/12/3 10:35
+     */
+    public static final String INIT_PASSWORD = "123456" ;
 
     private final static Logger logger = LoggerFactory.getLogger(RoleService.class);
 
@@ -101,7 +105,7 @@ public class RoleServiceImpl implements RoleService {
                 return 0 ;
             }else {
                 //已有角色是否包含权限
-                List<Role> roles = roleInitializingDao.queryRoleByRoleIds(Arrays.asList(teacher.getRoleid().split(COMMA)));
+                List<Role> roles = roleInitializingDao.queryRoleByRoleIds(Arrays.asList(teacher.getRoleid().split(",")));
                 if(!hasLoginType){
                     for(Role ro:roles){
                         //但凡拥有的角色包含权限，则更新密码，有登陆权限
@@ -111,7 +115,7 @@ public class RoleServiceImpl implements RoleService {
                         }
                     }
                 }
-                teacher.setRoleid(teacher.getRoleid() + COMMA + roleId.toString());
+                teacher.setRoleid(teacher.getRoleid() + "," + roleId.toString());
             }
         }
         //用户是否无初始密码且当前分配的角色含有登陆权限
@@ -131,9 +135,9 @@ public class RoleServiceImpl implements RoleService {
             public Integer doInTransaction(TransactionStatus status) {
                 //删除用户绑定的角色id(更新操作)
                 teachers.forEach(teacher -> {
-                    List<String> roleStringList = Arrays.asList(teacher.getRoleid().split(COMMA));
+                    List<String> roleStringList = Arrays.asList(teacher.getRoleid().split(","));
                     //重新组合用户所拥有的权限id
-                    teacher.setRoleid(String.join(COMMA,roleStringList.stream().filter(rid->roleId!=Integer.parseInt(rid)).collect(Collectors.toList())));
+                    teacher.setRoleid(String.join(",",roleStringList.stream().filter(rid->roleId!=Integer.parseInt(rid)).collect(Collectors.toList())));
                     teacherService.updateTeacher(teacher);
                 });
                 //删除角色

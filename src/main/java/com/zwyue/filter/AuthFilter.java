@@ -14,8 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.zwyue.constant.SysConstant.*;
-
 /**
  * AuthFilter class 全局用户过滤
  *
@@ -23,6 +21,13 @@ import static com.zwyue.constant.SysConstant.*;
  * @date 2018/11/22 11:27
  */
 public class AuthFilter extends OncePerRequestFilter {
+    /**
+     * 缓存用户
+     *
+     * @date 2018/11/23 13:17
+     */
+    public static final String CACHE_USER = "teacher" ;
+
     /**
      * 缓存管理员
      *

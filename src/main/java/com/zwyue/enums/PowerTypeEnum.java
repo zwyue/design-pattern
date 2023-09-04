@@ -1,7 +1,7 @@
 package com.zwyue.enums;
 
 /**
- * copyright    <a href="http://www.qaqavr.com/">中锐</a>
+ * 
  * <pre>
  *     @author      zwy
  *     @date        2018/12/27 15:03

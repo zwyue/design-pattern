@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
 /**
- * copyright    <a href="http://www.qaqavr.com/">中锐</a>
+ * 
  * <pre>
  *     @author      zwy
  *     @date        2019/1/7 14:53

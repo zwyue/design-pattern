@@ -1,32 +1,29 @@
 package com.zwyue.controller.student;
 
+import static com.zwyue.exception.ExceptionEnum.DELETE_FAILED;
+import static com.zwyue.exception.ExceptionEnum.SUCCESS;
+import static com.zwyue.exception.ExceptionEnum.UPDATE_FAILED;
+
 import com.github.pagehelper.PageInfo;
 import com.zwyue.common.BaseController;
 import com.zwyue.common.ResultUtils;
 import com.zwyue.entity.Student;
 import com.zwyue.entity.StudentEnter;
 import com.zwyue.service.StudentService;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpSession;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static com.zwyue.constant.SysConstant.;
-import static com.zwyue.exception.ExceptionEnum.DELETE_FAILED;
-import static com.zwyue.exception.ExceptionEnum.SUCCESS;
-import static com.zwyue.exception.ExceptionEnum.UPDATE_FAILED;
-
 /**
- * copyright    <a href="http://www.qaqavr.com/>中锐</a>
+ * 
  * <pre>
  *     @author      zwy
  *     @date        2018/12/20 18:34

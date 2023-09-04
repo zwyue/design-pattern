@@ -70,14 +70,6 @@
         <!--<constructor-arg value="6379"/>-->
     <!--</bean>-->
 
-    <!--&lt;!&ndash;配置自定义的RedisAPI工具类&ndash;&gt;-->
-    <!--<bean id="redisAPI" class="com.zrtjoa.util.RedisApi">-->
-        <!--<property name="jedisPool" ref="jedisPool"/>-->
-    <!--</bean>-->
-
-    <!--初始化缓存-->
-    <!--<bean id="testInitializingBean" class="com.zrtjoa.dao.initializingDao.CourseTimeInitializingDao" ></bean>-->
-
     <!--自定义消息转换器的编码,解决后台传输json回前台时，中文乱码问题-->
     <mvc:annotation-driven >
         <mvc:message-converters>
@@ -109,7 +101,6 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
-    <!--<bean class="com.zrtjoa.sysAop.PagingAop" />-->
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
     <!--访问webapp下静态资源，如js-->

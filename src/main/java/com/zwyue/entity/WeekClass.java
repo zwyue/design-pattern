@@ -2,7 +2,7 @@ package com.zwyue.entity;
 
 
 /**
- * copyright    <a href="http://www.qaqavr.com/>中锐</a>
+ * 
  * <pre>
  *     @author      zwy
  *     @date        2018/12/10 15:50
