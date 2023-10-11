@@ -1,3 +1,4 @@
+import com.zwyue.bird.Ostrich;
 import com.zwyue.entity.ShoppingCart;
 import com.zwyue.record.Item;
 import java.util.List;
@@ -28,7 +29,13 @@ public class GetSetTest {
         System.out.println(shoppingCart);
     }
 
+    public static void birdBehavior() {
+        Ostrich ostrich = new Ostrich();
+        ostrich.layEgg();
+        ostrich.tweet();
+    }
+
     public static void main(String[] args) {
-        shoppingCart();
+        birdBehavior();
     }
 }
