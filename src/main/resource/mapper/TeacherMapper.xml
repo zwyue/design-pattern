@@ -303,10 +303,4 @@
   <select id="queryLastTnumber" resultType="string">
      select tnumber from teacher order by id desc limit 1;
   </select>
-
-  <select id="getteaList" parameterType="java.lang.Integer" resultType="com.zwyue.entity.Teacher">
-    select
-    <include refid="Base_Column_List" />
-    from teacher where majorid=#{majorid,jdbcType=INTEGER}
-  </select>
 </mapper>

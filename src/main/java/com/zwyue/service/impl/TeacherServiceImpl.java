@@ -25,7 +25,7 @@ public class TeacherServiceImpl implements TeacherService , InitializingBean {
 
     private final static Logger logger = LoggerFactory.getLogger(TeacherServiceImpl.class);
 
-    private static final StringBuilder LASTT_NUMBER = new StringBuilder() ;
+    private static final StringBuilder LAST_NUMBER = new StringBuilder() ;
 
     @Autowired
     private TeacherDao teacherDao ;
@@ -102,7 +102,7 @@ public class TeacherServiceImpl implements TeacherService , InitializingBean {
             return ifTeacherExist ;
         }
         //生成教师编号
-        int a = Integer.parseInt(LASTT_NUMBER.toString());
+        int a = Integer.parseInt(LAST_NUMBER.toString());
         int b = a + 1 ;
         String c = Integer.toString(b);
         teacher.setTnumber(c.length()==1?"000"+c:c.length()==2?"00"+c:c.length()==3?"0"+c:c);
@@ -141,11 +141,6 @@ public class TeacherServiceImpl implements TeacherService , InitializingBean {
     }
 
     @Override
-    public List<Teacher> getteaList(Integer majorid) {
-        return teacherDao.getteaList(majorid);
-    }
-
-    @Override
     public void afterPropertiesSet(){
 
         logger.info("...........初始化查询数据库最后的教师编号..........");
@@ -153,8 +148,8 @@ public class TeacherServiceImpl implements TeacherService , InitializingBean {
         //查询数据库最后的教师编号
         String lastTnum = teacherDao.queryLastTnumber();
         //清空缓存教师编号
-        LASTT_NUMBER.setLength(0);
+        LAST_NUMBER.setLength(0);
         //加入新的教师编号
-        LASTT_NUMBER.append(StringUtils.isNotBlank(lastTnum)?lastTnum:"01");
+        LAST_NUMBER.append(StringUtils.isNotBlank(lastTnum)?lastTnum:"01");
     }
 }

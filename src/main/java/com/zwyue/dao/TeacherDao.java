@@ -79,13 +79,4 @@ public interface TeacherDao {
      * @return StringBuilder
      */
     String queryLastTnumber();
-
-    /**
-     * 根据专业查询教师列表
-     * @author yangli
-     * @date 2019/1/3
-     * @param majorid 专业id
-     * @return list
-     */
-    List<Teacher> getteaList(Integer majorid);
 }
