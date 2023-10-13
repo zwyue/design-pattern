@@ -4,7 +4,7 @@ package com.zwyue.exception;
  * 系统自定义异常
  *
  * @author admin
- * @date 2018/11/28 14:06
+ * 2018/11/28 14:06
  */
 public class TJOAException extends Exception {
 

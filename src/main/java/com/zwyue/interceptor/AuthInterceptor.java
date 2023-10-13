@@ -1,21 +1,18 @@
 package com.zwyue.interceptor;
 
-import com.zwyue.entity.Power;
-import com.zwyue.entity.Teacher;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.List;
-
 /**
  * <pre>
- *     @author  zwy
- *     @date    2018/12/1 14:08
+ *     @author zwy
+ *        2018/12/1 14:08
  *     email    1092478224.com
  *     desc     权限拦截器
  * </pre>
@@ -23,22 +20,19 @@ import java.util.List;
 public class AuthInterceptor implements HandlerInterceptor {
     /**
      * 缓存用户
-     *
-     * @date 2018/11/23 13:17
+     * 2018/11/23 13:17
      */
     public static final String CACHE_USER = "teacher" ;
 
     /**
      * 缓存管理员
-     *
-     * @date 2018/12/1 12:16
+     * 2018/12/1 12:16
      */
     public static final String CACHE_ADMIN = "is_admin" ;
 
     /**
      * 缓存权限
-     *
-     * @date 2018/11/23 13:39
+     * 2018/11/23 13:39
      */
     public static final String CACHE_PERMISSION = "permissions" ;
 
@@ -47,9 +41,8 @@ public class AuthInterceptor implements HandlerInterceptor {
     /**
      * 此处做controller层的权限拦截校验
      * 免拦截的uri可在spring-mvc.xml中配置,此处只拦截未登录和没有权限的uri
-     *
      * @author zwy
-     * @date 2018/12/1 14:41
+     * 2018/12/1 14:41
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -57,40 +50,21 @@ public class AuthInterceptor implements HandlerInterceptor {
         logger.info("=======进入拦截器======");
         HttpSession session = request.getSession();
 
-        boolean isAdmin = session.getAttribute(CACHE_ADMIN)==null?false:(Boolean) session.getAttribute(CACHE_ADMIN);
-        Teacher teacher = (Teacher) session.getAttribute(CACHE_USER);
-        List<Power> authorities = (List<Power>) session.getAttribute(CACHE_PERMISSION);
+        boolean isAdmin =
+            session.getAttribute(CACHE_ADMIN) != null &&
+                (Boolean) session.getAttribute(CACHE_ADMIN);
 
         //请求的uri
-        String uri = request.getRequestURI();
 
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=utf-8");
-        response.setHeader("Access-Control-Allow-Credentials","true");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
         response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         response.setHeader("Access-Control-Allow-Methods", "GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH");
 
         //管理员不限权限
-        if(isAdmin){
-            return true ;
-        }
-
-        //未登录
-        if(teacher==null){
-            //跳入登陆页面
-//            request.getRequestDispatcher(LOGIN_URI).forward(request, response);
-            response.getWriter().write("未登录，请重新登录后操作");
-            return false ;
-        }
-
-        if(authorities!=null && authorities.stream().anyMatch(auth->auth.getRules().contains(uri))){
-            return true ;
-        }else {
-            //无权限
-            response.getWriter().write("您没有操作的权限");;
-            return false ;
-        }
+        return isAdmin ;
     }
 
     @Override

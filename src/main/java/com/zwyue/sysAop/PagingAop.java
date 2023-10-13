@@ -2,7 +2,8 @@ package com.zwyue.sysAop;
 
 import com.github.pagehelper.PageHelper;
 import com.zwyue.annotation.PagingQuery;
-import org.apache.commons.lang.StringUtils;
+import jakarta.servlet.http.HttpServletRequest;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -13,14 +14,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
  * 
  * <pre>
  *     @author      zwy
- *     @date        2018/12/7 9:32
+ *            2018/12/7 9:32
  *     email        1092478224@qq.com
  *     desc         全局分页处理
  * </pre>

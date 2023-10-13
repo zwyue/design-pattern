@@ -1,18 +1,18 @@
 package com.zwyue.exception;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * 
  * <pre>
  *     @author      zwy
- *     @date        2018/12/25 16:40
+ *            2018/12/25 16:40
  *     email        1092478224@qq.com
  *     desc
  * </pre>

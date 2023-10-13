@@ -5,14 +5,13 @@ package com.zwyue.enums;
  * 状态类的枚举
  *
  * @author zwy
- * @date 2018/11/30 14:01
+ * 2018/11/30 14:01
  */
 public enum StatusEnum {
 
     /**
      * 状态是否可用
-     *
-     * @date 2018/11/30 14:09
+      * 2018/11/30 14:09
      */
     IS_ENABLE("0","可用"),
     IS_DISABLED("1","不可用")

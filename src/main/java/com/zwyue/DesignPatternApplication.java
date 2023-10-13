@@ -5,7 +5,16 @@ import com.zwyue.config.MySqlConfig;
 import com.zwyue.config.RedisConfig;
 import com.zwyue.server.SimpleHttpServer;
 import com.zwyue.timeTask.ScheduledUpdater;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+@SpringBootApplication
+@RestController
+@MapperScan("com.zwyue.dao")
 public class DesignPatternApplication {
 
     public static final RedisConfig REDIS_CONFIG = new RedisConfig();
@@ -24,5 +33,12 @@ public class DesignPatternApplication {
         SimpleHttpServer simpleHttpServer = new SimpleHttpServer("127.0.0.1",2389) ;
         simpleHttpServer.addViewers("./config",REDIS_CONFIG);
         simpleHttpServer.addViewers("./config",MY_SQL_CONFIG);
+
+        SpringApplication.run(DesignPatternApplication.class, args);
+    }
+
+    @GetMapping("/hello")
+    public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+        return String.format("Hello %s!", name);
     }
 }

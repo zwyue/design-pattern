@@ -4,21 +4,19 @@ package com.zwyue.enums;
  * CategoryEnum class
  *
  * @author zwy
- * @date 2018/11/28 16:47
+ * 2018/11/28 16:47
  */
 public enum  CategoryEnum {
 
     /**
      * 数字化建设
-     *
-     * @date 2018/11/28 16:57
+      * 2018/11/28 16:57
      */
     DIGITAL_CONSTRUCT("0","数字化建设"),
 
     /**
      * 教材建设
-     *
-     * @date 2018/11/28 16:57
+      * 2018/11/28 16:57
      */
     TEACH_MATERIAL_CONSTRUCT("1","教材建设")
 

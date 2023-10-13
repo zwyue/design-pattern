@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
  *
  * @author zwy
  */
-@Component
 public class ScheduledUpdater {
 
     private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();

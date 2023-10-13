@@ -4,7 +4,7 @@ package com.zwyue.enums;
  * 
  * <pre>
  *     @author      zwy
- *     @date        2018/12/27 15:03
+ *            2018/12/27 15:03
  *     email        1092478224@qq.com
  *     desc         权限类型
  * </pre>
@@ -13,8 +13,7 @@ public enum PowerTypeEnum {
 
     /**
      *  权限类型
-     *
-     * @date 2018/12/27 15:09
+      * 2018/12/27 15:09
      */
     MENU("1","菜单")
 

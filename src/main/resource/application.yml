@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:mysql://172.18.102.230:3306/qcc-cloud-search?Unicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=CTT
+    username: zhaom
+    password: 1qazWSX$2
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimumIdle: 10
+      maximumPoolSize: 50
+      autoCommit: true
+      idleTimeout: 30000
+      maxLifetime: 1800000
+      connectionTimeout: 30000
+      connection-test-query: select 1
+
+server:
+  port: 1234
+
+logging:
+  file:
+    path: logs

@@ -4,7 +4,7 @@ package com.zwyue.enums;
  * 
  * <pre>
  *     @author      zwy
- *     @date        2018/12/10 18:01
+ *            2018/12/10 18:01
  *     email        1092478224@qq.com
  *     desc
  * </pre>
@@ -13,7 +13,7 @@ public enum  WeekEnum {
 
     /**
      * 星期枚举
-     * @date 2018/12/10 18:05
+     * 2018/12/10 18:05
      */
     MONDAY("周一","1"),
 

@@ -5,7 +5,7 @@ package com.zwyue.common;
  * 用于分页的实体类
  *
  * @author zwy
- * @date 2018/11/29 9:59
+ * 2018/11/29 9:59
  */
 public class PaginationEntity {
 

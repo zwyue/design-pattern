@@ -4,7 +4,7 @@ package com.zwyue.exception;
  * 异常枚举类
  *
  * @author admin
- * @date 2018/11/28 14:07
+ * 2018/11/28 14:07
  */
 public enum ExceptionEnum {
 
