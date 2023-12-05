@@ -1,4 +1,5 @@
 import com.zwyue.bird.Ostrich;
+import com.zwyue.build.ResourcePoolConfig;
 import com.zwyue.entity.ShoppingCart;
 import com.zwyue.record.Item;
 import java.util.List;
@@ -25,7 +26,7 @@ public class GetSetTest {
 
         // 此处会抛出异常，因为使用了 unmodifiableList
         // 而面向对象封装的定义是：通过访问权限控制，隐藏内部数据，外部仅能通过类提供的有限的接口访问、修改内部数据。
-//        items.clear();
+        //        items.clear();
         System.out.println(shoppingCart);
     }
 
@@ -35,7 +36,14 @@ public class GetSetTest {
         ostrich.tweet();
     }
 
+    public static void build() {
+        ResourcePoolConfig resourcePoolConfig =
+            new ResourcePoolConfig.Builder().setName("dbconnectionpool").setMaxTotal(16)
+                .setMaxIdle(10).setMinIdle(8).build();
+        System.out.println(resourcePoolConfig.toString());
+    }
+
     public static void main(String[] args) {
-        birdBehavior();
+        build();
     }
 }
