@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.zhuwy</groupId>
+  <groupId>com.zwyue</groupId>
   <artifactId>design-pattern</artifactId>
 
   <packaging>jar</packaging>
@@ -64,11 +64,17 @@
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/com.baomidou/mybatisplus-spring-boot-starter -->
-    <dependency>
-      <groupId>com.baomidou</groupId>
-      <artifactId>mybatis-plus-boot-starter</artifactId>
-      <version>${spring.mybatis.plus}</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>com.baomidou</groupId>-->
+<!--      <artifactId>mybatis-plus-boot-starter</artifactId>-->
+<!--      <version>${spring.mybatis.plus}</version>-->
+<!--&lt;!&ndash;      <exclusions>&ndash;&gt;-->
+<!--&lt;!&ndash;        <exclusion>&ndash;&gt;-->
+<!--&lt;!&ndash;          <groupId>com.github.jsqlparser</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;          <artifactId>jsqlparser</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;        </exclusion>&ndash;&gt;-->
+<!--&lt;!&ndash;      </exclusions>&ndash;&gt;-->
+<!--    </dependency>-->
 
     <dependency>
       <groupId>org.springframework</groupId>
@@ -76,12 +82,12 @@
       <version>${spring.version}</version>
     </dependency>
 
-    <!-- 添加mysql驱动依赖 -->
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>${mysql-driver.version}</version>
-    </dependency>
+<!--    &lt;!&ndash; 添加mysql驱动依赖 &ndash;&gt;-->
+<!--    <dependency>-->
+<!--      <groupId>mysql</groupId>-->
+<!--      <artifactId>mysql-connector-java</artifactId>-->
+<!--      <version>${mysql-driver.version}</version>-->
+<!--    </dependency>-->
     <!-- 添加数据库连接池依赖 -->
     <dependency>
       <groupId>commons-dbcp</groupId>
@@ -114,26 +120,44 @@
       <groupId>com.github.pagehelper</groupId>
       <artifactId>pagehelper</artifactId>
       <version>5.0.0</version>
+<!--      <exclusions>-->
+<!--        <exclusion>-->
+<!--          <groupId>com.github.jsqlparser</groupId>-->
+<!--          <artifactId>jsqlparser</artifactId>-->
+<!--        </exclusion>-->
+<!--      </exclusions>-->
     </dependency>
 
-      <!--使用AspectJ方式注解需要相应的包-->
-      <dependency>
-          <groupId>org.aspectj</groupId>
-          <artifactId>aspectjrt</artifactId>
-          <version>${aspectj.version}</version>
-      </dependency>
+    <!--使用AspectJ方式注解需要相应的包-->
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+      <version>${aspectj.version}</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.10.1</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/com.github.jsqlparser/jsqlparser -->
+<!--    <dependency>-->
+<!--      <groupId>com.github.jsqlparser</groupId>-->
+<!--      <artifactId>jsqlparser</artifactId>-->
+<!--      <version>4.6</version>-->
+<!--    </dependency>-->
   </dependencies>
 
   <build>
-
-    <finalName>design-pattern</finalName>
-
     <resources>
       <resource>
         <directory>src/main/resources</directory>
         <includes>
           <include>mapper/*.xml</include>
           <include>**/*.yml</include>
+          <include>*.yml</include>
         </includes>
         <filtering>false</filtering>
       </resource>
@@ -146,6 +170,22 @@
           <source>17</source>
           <target>17</target>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>2.6.0</version>
+        <configuration>
+          <mainClass>com.zwyue.DesignPatternApplication</mainClass>
+          <finalName>design-pattern</finalName>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

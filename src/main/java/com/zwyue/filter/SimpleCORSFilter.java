@@ -28,7 +28,7 @@ public class SimpleCORSFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException,
         ServletException {
-        logger.info(".............执行过滤...................");
+//        logger.info(".............执行过滤...................");
         HttpServletResponse response = (HttpServletResponse) res;
         String []  allowDomain= {"http://127.0.0.1:8081",
                 "http://192.168.0.146",
@@ -47,8 +47,10 @@ public class SimpleCORSFilter implements Filter {
                 "http://192.168.0.167",
                 "http://192.168.0.107",
                 "http://192.168.0.107:8083",
-                "http://localhost:8081"};
-        Set<String> allowedOrigins= new HashSet<String>(Arrays.asList(allowDomain));
+                "http://localhost:8081",
+                "http://localhost:1234",
+        };
+        Set<String> allowedOrigins= new HashSet<>(Arrays.asList(allowDomain));
         String originHeader=((HttpServletRequest) req).getHeader("Origin");
         if (allowedOrigins.contains(originHeader)) {
 //            response.setHeader("Access-Control-Allow-Origin", originHeader);

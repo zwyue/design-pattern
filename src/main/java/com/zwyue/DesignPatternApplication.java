@@ -5,7 +5,6 @@ import com.zwyue.config.MySqlConfig;
 import com.zwyue.config.RedisConfig;
 import com.zwyue.server.SimpleHttpServer;
 import com.zwyue.timeTask.ScheduledUpdater;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-@MapperScan("com.zwyue.dao")
+//@MapperScan("com.zwyue.dao")
 public class DesignPatternApplication {
 
     public static final RedisConfig REDIS_CONFIG = new RedisConfig();
