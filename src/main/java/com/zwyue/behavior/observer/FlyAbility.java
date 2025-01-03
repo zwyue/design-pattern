@@ -1,4 +1,4 @@
-package com.zwyue.behavior;
+package com.zwyue.behavior.observer;
 
 import com.zwyue.interfaces.FlyAble;
 
