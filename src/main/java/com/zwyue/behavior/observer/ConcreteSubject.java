@@ -1,4 +1,4 @@
-package com.zwyue.observe;
+package com.zwyue.behavior.observer;
 
 import java.util.ArrayList;
 import java.util.List;

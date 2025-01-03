@@ -1,4 +1,4 @@
-package com.zwyue.behavior.observer;
+package com.zwyue.bird;
 
 import com.zwyue.interfaces.EggLayAble;
 

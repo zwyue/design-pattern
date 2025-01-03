@@ -1,7 +1,6 @@
-package com.zwyue.observe;
+package com.zwyue.behavior.observer;
 
 import java.util.function.Consumer;
-import java.util.function.Function;
 import org.apache.logging.log4j.message.Message;
 
 public interface Subject {

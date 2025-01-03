@@ -1,7 +1,5 @@
 package com.zwyue.bird;
 
-import com.zwyue.behavior.observer.EggLayAbility;
-import com.zwyue.behavior.observer.TweetAbility;
 import com.zwyue.interfaces.EggLayAble;
 import com.zwyue.interfaces.TweetAble;
 
